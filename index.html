@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Picture Gallery</title>
+
+    <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
+    <!-- Using via Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <!-- https://tailwindcss.com/docs/installation -->
+    <!-- Using Tailwind via CDN -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+    <!-- https://v3.vuejs.org/guide/installation.html#release-notes -->
+    <!-- Vue CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+
+<style>
+    .gallery-item-1 {
+        background-image: url(images/1.png);
+    }
+    
+    .gallery-item-2 {
+        background-image: url(images/2.png);
+    }
+    
+    .gallery-item-3 {
+        background-image: url(images/3.jpg);
+    }
+</style>
+
+<body class="bg-blue-50">
+    <div id="app">
+        <div class="flex justify-center item-center space-x-3 xl\:h-screen">
+            <div class="card p-3">
+                <h1 class="font-bold text-3xl text-blue-500 hover:text-blue-700 text-center">LOVE gallery ({{countPic}}) </h1>
+            </div>
+        </div>
+        <photo-search   @input-data="setinput" ></photo-search>
+        <photo-view :viewpic="viewPic" :hasview="hasView" @close="closePic"></photo-view>
+  
+        <photo-item :picture="filterSearch" @viewing="toggleView" @liking="toggleLike"></photo-item>
+    
+        <h2 v-show="filterSearch.length == 0" class="p-10 flex justify-center">Picture does not exist</h2>
+    </div>
+
+
+    <!-- my main.js -->
+    <script src="./main.js"></script>
+    <script src="./components/PhotoView.js"></script>
+    <script src="./components/PhotoItem.js"></script>
+    <script src="./components/PhotoSearch.js"></script>
+    <script>
+        const mountedApp = app.mount('#app')
+    </script>
+</body>
+
+
+</html>
